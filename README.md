@@ -27,6 +27,16 @@ This project uses EditorConfig to standardize text editor configuration.
 
 This project uses eslint to detect suspicious code in Javascript
 
+### Testing
+
+This project uses Mocha and Chai for testing.
+
+To execute tests
+
+```bash
+npm test
+```
+
 ### Debugging
 
 This project uses https://www.npmjs.com/package/debug for development logging. To start `nodemon` and enable logging:

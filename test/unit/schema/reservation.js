@@ -47,9 +47,6 @@ describe("Reservation Schema", function () {
       });
 
       reservation.validator(function (error, value) {
-        console.log(error);
-        console.log("###########################");
-        console.log(value);
         error.should.be.an("error").and.not.be.null;
         done();
       });

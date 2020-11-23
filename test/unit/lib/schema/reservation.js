@@ -1,6 +1,6 @@
 const chai = require("chai");
 const should = chai.should();
-const Reservation = require("../../../lib/schema/reservation");
+const Reservation = require("../../../../lib/schema/reservation");
 
 describe("Reservation Schema", function () {
   context("Date and Time Combination", function () {
@@ -18,6 +18,30 @@ describe("Reservation Schema", function () {
       const time = "fail";
 
       should.not.exist(Reservation.combineDateTime(date, time));
+    });
+  });
+
+  context("Constructor", function () {
+    it("should create a Reservation with valid fields", function () {
+      const valid = {
+        date: "2017/06/10",
+        time: "06:02 AM",
+        party: 4,
+        name: "Family",
+        email: "username@example.com",
+      };
+
+      const expected = {
+        datetime: "2017-06-10T06:02:00.000Z",
+        party: 4,
+        name: "Family",
+        email: "username@example.com",
+        message: undefined,
+        phone: undefined,
+      };
+
+      const actual = new Reservation(valid);
+      actual.should.deep.equal(expected);
     });
   });
 
@@ -46,7 +70,7 @@ describe("Reservation Schema", function () {
         email: "username",
       });
 
-      reservation.validator(function (error, value) {
+      reservation.validator(function (error) {
         error.should.be.an("error").and.not.be.null;
         done();
       });
